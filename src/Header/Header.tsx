@@ -9,7 +9,7 @@ const Header = () => {
         <IconAnchor size={24} stroke={2.5} className='text-bright-sun'/>
         <span className="text-xl sm:text-2xl text-bright-sun-300 font-bold">Job Hook</span>
       </div>
-    {NavLinks()}
+      {NavLinks()}
       <div className="flex items-center gap-3">
         <span className='text-bright-sun-400 font-semibold text-xl'>Akhilesh</span>
         <Avatar src="avatar.png" alt="it's me" />

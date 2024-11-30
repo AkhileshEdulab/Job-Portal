@@ -1,4 +1,3 @@
-import React from 'react';
 import { work } from '../Data/Data';
 
 const Working = () => {
@@ -45,7 +44,7 @@ const Working = () => {
           {work.map((item, index) => (
             <div
               key={index}
-              className="flex items-center gap-5 p-4 border border-bright-sun-200 rounded-lg hover:shadow-lg transition-transform hover:scale-105"
+              className="flex items-center gap-5 p-4 border border-bright-sun-400 rounded-lg shadow-lg hover:shadow-bright-sun-400 transition-transform hover:scale-105 "
             >
               <img
                 src={`/Working/${item.name}.png`}

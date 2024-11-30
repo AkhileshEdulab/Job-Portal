@@ -67,7 +67,7 @@ const Footer = () => {
       <h3 className="text-3xl font-bold text-bright-sun-400 mb-4">{list.title}</h3>
       <ul className="space-y-2">
         {list.links.map((link, idx) => (
-          <li key={idx} className="flex cursor-pointer hover:translate-x-2 transtion duration-300 ease-in">
+          <li key={idx} className="flex cursor-pointer hover:translate-x-2 hover:text-bright-sun-400 transtion duration-300 ease-in">
               {link}
           </li>
         ))}

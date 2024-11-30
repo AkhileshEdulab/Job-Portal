@@ -1,5 +1,6 @@
-import { Divider, Text } from "@mantine/core";
-import { IconBookmark, IconClock } from "@tabler/icons-react";
+
+import { Button, Divider, Text } from "@mantine/core";
+import { IconBookmark, IconBookmarkFilled, IconCalendarMonth, IconClock } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 
 const Card = (props:any) => {
@@ -13,7 +14,7 @@ const Card = (props:any) => {
         <div className="font-semibold text-mine-shaft-100">{props.jobTitle}</div>
         <div className="text-mine-shaft-300">{props.company} &#9679; {props.applicants} Applicants</div>
         </div>
-        <div className="text-mine-shaft-300"><IconBookmark/></div>
+        {props.saved?<IconBookmarkFilled className="text-bright-sun-400"/>:<IconBookmark className="text-mine-shaft-300"/>}
         </div>
         <div className="flex justify-between mt-4 [&>div]:py-1  [&>div]:px-2  [&>div]:text-bright-sun-400">
             <div className="bg-mine-shaft-700 rounded-md">{props.experience}</div>
@@ -28,9 +29,21 @@ const Card = (props:any) => {
                 <div className="font-semibold">&#8377;{props.package}</div>
                 <div className="flex gap-2 items-center text-mine-shaft-300">
                     <IconClock/>
-                    Posted {props.postedDaysAgo} days ago
+                   {props.applied?"Applied":props.offered?"Interviewed":"Posted"} {props.postedDaysAgo} days ago
                 </div>
             </div>
+            {props.offered && <Divider color ="mine-shaft.7"/>}
+           {props.offered && 
+             <div className="flex gap-32 mt-4">
+             <Button  variant="outline"color="bright-sun.4"className="shadow-l shadow-bright-sun-400 hover:scale-110 transition-transform duration-300"> Accept</Button>
+             <Button  variant="light" color="bright-sun.4" className="shadow-l shadow-bright-sun-400 hover:scale-110 transition-transform duration-300" > Reject</Button>
+             </div>
+           }
+           {
+            props.interviewing && <div className="flex mt-2 gap-2">
+              <IconCalendarMonth stroke={1.5} className="text-bright-sun-400 w-5 h-5"/> Sunday 27 August &bull; <span className="text-bright-sun-400">2024 10:00</span>
+            </div>
+           }
     </Link>
   )
 }

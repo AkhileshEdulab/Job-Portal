@@ -2,6 +2,7 @@ import { Divider, MantineProvider, createTheme } from '@mantine/core';
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/tiptap/styles.css';
+import '@mantine/dates/styles.css';
 import Home from './Pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './Header/Header';
@@ -14,6 +15,7 @@ import TalentProfile from './Pages/TalentProfile';
 import JobDescriptionPage from './Pages/JobDescriptionPage';
 import ApplyJobPages from './Pages/ApplyJobPages';
 import CompanyPage from './Pages/CompanyPage';
+import JobHistoryPage from './Pages/JobHistoryPage';
 
 const theme = createTheme({
   focusRing:"never",
@@ -38,6 +40,7 @@ function App() {
       <Divider size="xs" />
       <Routes>
       <Route path='/posted-job' element={<About/>}/>
+      <Route path='/job-history' element={<JobHistoryPage/>}/>
       <Route path='/company' element={<CompanyPage/>}/>
       <Route path='/talent-profile' element={<TalentProfile/>}/>
       <Route path='/apply-job' element={<ApplyJobPages/>}/>

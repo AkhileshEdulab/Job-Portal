@@ -45,12 +45,12 @@ const LandingPage = () => {
       </div>
 
       <div className="relative flex items-center h-[600px] w-[600px] mt-5">
-        <div className="absolute backdrop-blur-md items-center bg-mine-shaft-950 border-2 border-bright-sun-400 rounded-lg shadow-lg p-2 w-50 mb-[200px]">
-          <div className="flex items-center gap-3">
+        <div className="absolute backdrop-blur-md items-center bg-mine-shaft-950 border-2 border-bright-sun-400 rounded-lg hover:shadow-[0_0_5px_2px_green] p-2 w-50 mb-[200px]">
+          <div className="flex items-center gap-3 ">
             <div className="bg-mine-shaft-500 rounded-md p-2 h-8 w-8">
               <img src="Google.png" alt="google" />
             </div>
-            <div>
+            <div className=''>
               <h3 className="text-lg font-semibold">Software Engineer</h3>
               <p className="text-sm ">New York</p>
             </div>

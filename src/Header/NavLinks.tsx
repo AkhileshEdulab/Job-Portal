@@ -6,6 +6,7 @@ const NavLinks = () => {
     { name: "Find Talent", url: "/find-talent" },
     { name: "Post Jobs", url: "/post-job" },
     { name: "Posted Jobs", url: "/posted-job" },
+    { name: "Job History", url: "/job-history" },
   ];
   const location = useLocation();
   return (
@@ -13,11 +14,11 @@ const NavLinks = () => {
       {links.map((link, index) => (
         <div
           key={index} 
-          className={`${
+          className= {`${
             location.pathname === link.url
-              ? "text-bright-sun-400 border-b-bright-sun-400"
+              ? "text-bright-sun-400 border-b-bright-sun-400 "
               : "border-transparent"
-          } border-b-[3px] h-full flex items-center`}
+          } border-b-[3px] h-full flex items-center `}
         >
           <Link to={link.url}>{link.name}</Link>
         </div>

@@ -8,33 +8,25 @@ const JobDesc = (props:any) => {
     const data =DOMPurify.sanitize(desc);
   return (
     <div className='w-2/3'>
-         <div className="flex justify-between">
-        <div className="flex gap-2 items-center"> 
+         <div className="flex justify-between mt-12 mb-8">
+        <div className="flex gap-2 items-center "> 
             <div className='p-3 bg-mine-shaft-800 rounded-md'>
             <img src={`/Icons/Google.png`} alt="apple" className="w-8 h-8"/>
             </div>
-            <div className='flex flex-col gap-1'>
+            <div className='flex flex-col gap-1   '>
         <div className="font-semibold text-mine-shaft-100 text-2xl">Google</div>
         <div className="text-mine-shaft-300">Goodle &#9679; Applicants</div>
         </div>
-             </div>
-             {/* <div className='flex flex-col items-center'>
-                <Link to={'/apply-job'}>
-                <Button variant="light" color="bright-sun.5">{props.edit?'Edit':'Apply'}</Button>
-                </Link>
-             {props.edit?<Button variant="light" color="bright-sun.4">{props.edit?'Edit':'Apply'}Delete</Button>:<IconBookmark/>}
-
-             </div> */}
-             
-             <div className="flex flex-col items-center">
+             </div>  
+             <div className="flex gap-4 items-center">
   <Link to="/apply-job">
-    <Button variant="light" color="bright-sun.5">
+    <Button variant="outline" color="bright-sun.5">
       {props.edit ? 'Edit' : 'Apply'}
     </Button>
   </Link>
   
   {props.edit ? (
-    <Button variant="light" color="bright-sun.4">Delete</Button>
+    <Button variant="outline" color="bright-sun.4">Delete</Button>
   ) : (
     <IconBookmark />
   )}

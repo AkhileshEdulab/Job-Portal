@@ -58,7 +58,7 @@ const MultiInput = (props:any) => {
       </Group>
     </Combobox.Option>
   ));
-
+  
   return (
     <Combobox store={combobox} onOptionSubmit={handleValueSelect} withinPortal={false}>
       <Combobox.DropdownTarget>
@@ -82,7 +82,7 @@ const MultiInput = (props:any) => {
         </PillsInput>
       </Combobox.DropdownTarget>
 
-      <Combobox.Dropdown className="max-h-60 w-128 overflow-y-auto">
+      <Combobox.Dropdown className="max-h-60 w-full overflow-y-auto">
       <Combobox.Search
             value={search}
             onChange={(event) => setSearch(event.currentTarget.value)}

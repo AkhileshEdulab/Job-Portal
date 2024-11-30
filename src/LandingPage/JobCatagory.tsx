@@ -14,13 +14,12 @@ const JobCategory = () => {
         Explore diverse job opportunities tailored to your skills. Start your career journey today!
       </div>
 
-      <div className="w-full m-4">
+      <div className="w-full m-4 relative group">
       <Carousel
            slideSize="22%"
            slideGap="md"
            loop
-           className="[&_button]:opacity-0 hover:[&_button]:opacity-75 focus:[&_button]:bg-bright-sun-400"
-          
+           className="[&_button]:opacity-0 group-hover:[&_button]:opacity-100 [&_button]:transition-opacity [&_button]:bg-bright-sun-400"
             nextControlIcon={<IconArrowRight />}
            previousControlIcon={<IconArrowLeft />}>
           {jobCategory.map((category, index) => (

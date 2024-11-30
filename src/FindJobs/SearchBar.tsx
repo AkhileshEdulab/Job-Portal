@@ -7,9 +7,9 @@ import { useState } from 'react';
 const SearchBar = () => {
   const [value, setValue] = useState<[number, number]>([1, 100]);
    
-    return <div className="flex px-5 py-8">
+    return <div className="flex px-5 py-8 ">
   {
-  dropdownData.map((item, index) =><>  <div key={index} className="flex items-center w-full sm:w-1/2 md:w-1/3 lg:w-1/5">
+  dropdownData.map((item, index) =><>  <div key={index} className="flex items-center sm:w-1/2 md:w-1/3 lg:w-1/5">
      <MultiInput {...item} />
     </div>
     <Divider ml="xs" size="xs" orientation="vertical" />

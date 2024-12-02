@@ -3,7 +3,6 @@ import SelectInput from './SelectInput'
 import { fields } from '../Data/PostJob'
 import { Button, TagsInput } from '@mantine/core';
 import TextEditor from './TextEditor';
-import { IconArrowNarrowLeft } from '@tabler/icons-react';
 
 const PostJobs = () => {
     const select = fields;

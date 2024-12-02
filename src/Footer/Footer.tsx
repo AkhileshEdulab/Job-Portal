@@ -1,22 +1,16 @@
-import {
-  IconBrandFacebook,
-  IconBrandTwitter,
-  IconBrandLinkedin,
-  IconBrandInstagram,
-  IconAnchor,
+import {IconBrandFacebook,IconBrandTwitter,IconBrandLinkedin,IconBrandInstagram,IconAnchor,
 } from '@tabler/icons-react';
 import { footerLinks } from '../Data/Data';
+import { useLocation } from 'react-router-dom';
 
 
 const Footer = () => {
-  return (
+  const location = useLocation();
+  return  location.pathname !=="/sign-up" && location.pathname !=="/login" ? 
     <footer className="bg-mine-shaft-950 text-white py-10 border-t border-gray-600 ">
       <div className="container mx-auto px-4  ">
-        {/* Flex layout for the footer sections */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-8">
-          
-          {/* About Section */}
-          <div className="flex-1 ml-5">
+            <div className="flex-1 ml-5">
             <div className="flex items-center gap-2 mb-4 ">
               <IconAnchor size={24} stroke={2.5} />
               <span className="text-xl sm:text-2xl text-bright-sun-300 font-bold">Job Hook</span>
@@ -80,8 +74,7 @@ const Footer = () => {
           © {new Date().getFullYear()} YourCompany. All rights reserved.
         </div>
       </div>
-    </footer>
-  );
-};
+    </footer>:<></>
+}
 
 export default Footer;

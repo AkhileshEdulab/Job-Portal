@@ -1,3 +1,5 @@
+import { ActionIcon } from "@mantine/core"
+import { IconTrash } from "@tabler/icons-react"
 
 const Certificates = (props:any) => {
   return (
@@ -14,6 +16,9 @@ const Certificates = (props:any) => {
         <div className='flex flex-col items-end'>
         <div className="text-mine-shaft-300">{props.issueDate}</div>
         <div className='mb-6'>{props.certificateId}</div>
+        {props.edit&& <ActionIcon variant="outline" >
+         <IconTrash size={30} stroke={1.5} color="red"/>
+        </ActionIcon>}
         </div>
    </div>
     

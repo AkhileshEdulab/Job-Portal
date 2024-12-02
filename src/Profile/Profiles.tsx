@@ -1,16 +1,20 @@
-import { ActionIcon, Button, Divider, TagsInput, Textarea,  } from '@mantine/core';
-import { IconBriefcase, IconDeviceFloppy, IconMapPin, IconPencil } from '@tabler/icons-react';
+import { ActionIcon,Divider, TagsInput, Textarea,  } from '@mantine/core';
+import { IconBriefcase, IconDeviceFloppy, IconMapPin, IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import Experences from './Experences';
 import Certificates from './Certificates';
 import { useState } from 'react';
 import SelectInput from './SelectInput';
 import fields from '../Data/Profile';
+import ExperenceInput from './ExperenceInput';
+import CertificateInput from './CertificateInput';
 
 const Profiles = (props:any) => {
   const select = fields;
   const [about, setAbout] = useState("As a Software Engineer at Google, I specialize in building scalable and high-performance applications. My expertise lies in integrating front-end and back-end technologies to deliver seamless user experiences. With a strong foundation in React and SpringBoot, and a focus on MongoDB for database solutions, I am passionate about leveraging the latest technologies to solve complex problems and drive innovation. My goal is to create impactful software that enhances productivity and meets user needs effectively.",);
   const [edit, setEdit]=useState([false,false,false,false,false]);
   const [skills, setSkills] = useState(['React', 'Spring Boot', 'Java', 'Python', 'Node.js', 'MongoDB', 'Express', 'Django', 'PostgreSQL']);
+  const [add,setAdd]=useState('false')
+  const [addCerti, setAddCerti] = useState(false);
 
   const handelEdit =(index:any)=>{
     const newEdit=[...edit];
@@ -58,7 +62,7 @@ const Profiles = (props:any) => {
         {edit[1] ? <IconDeviceFloppy size={30} stroke={1.5} className="text-bright-sun-400" />: <IconPencil size={30} stroke={1.5} className="text-bright-sun-400" />}
       </ActionIcon>
   </div>
-
+  
   {edit[1] ? <Textarea autosize placeholder='Enter about yourself...'maxRows={4} value={about} onChange={(event) => setAbout(event.currentTarget.value)} />: <>
     <div className="flex justify-between mine-shaft-400">
       {props.about}
@@ -89,41 +93,50 @@ const Profiles = (props:any) => {
         </>
         }
       </div>
-
-      
       <Divider size="xs" />
       <div className=" mt-4">
-        <div className="text-3xl font-semibold flex justify-between">Experience<ActionIcon variant="light" onClick={()=>handelEdit(3)}>
+        <div className="text-3xl font-semibold flex justify-between mb-4">Experience
+       <div className='flex gap-6'>
+       <ActionIcon variant="light" onClick={()=>setAdd('true')}>
+         <IconPlus size={30} stroke={1.5} className='text-bright-sun-400'/>
+        </ActionIcon>
+          <ActionIcon variant="light" onClick={()=>handelEdit(3)}>
           {edit[3]?<IconDeviceFloppy size={30} stroke={1.5} className='text-bright-sun-400'/> :<IconPencil size={30} stroke={1.5} className='text-bright-sun-400'/>
         }
         </ActionIcon>
+       </div>
         </div>
         <div className="flex flex-col gap-8">
+            {add && <ExperenceInput add setEdit={setAdd}/>}
               {
               props.experience.map((exp: any, index: any) => <Experences key={index} {...exp} edit={edit[3]}/>)
              }        
+           
         </div>
       </div>
       <Divider size="xs" />
       <div className=" mt-4">
         <div className="text-3xl font-semibold flex justify-between">Certification
+        <div className='flex gap-6'>
+        <ActionIcon variant="light" onClick={()=>setAddCerti(true)}>
+         <IconPlus size={30} stroke={1.5} className='text-bright-sun-400'/>
+        </ActionIcon>
         <ActionIcon variant="light" onClick={()=>handelEdit(4)}>
           {edit[4]?<IconDeviceFloppy size={30} stroke={1.5} className='text-bright-sun-400'/> :<IconPencil size={30} stroke={1.5} className='text-bright-sun-400'/>
         }
         </ActionIcon>
         </div>
+        </div>
         <div className="flex flex-col gap-8">
-          {props.certifications && props.certifications.length > 0 ? (
-            props.certifications.map((exp: any, index: any) => (
-              <Certificates key={index} {...exp} />
-            ))
-          ) : (
-            <div className="text-gray-500">No certifications available</div>
-          )}
+          {
+           props.certifications.map((exp: any, index: any) =><Certificates key={index} {...exp} edit={edit[4]}/>)
+          } 
+          {
+          addCerti&&<CertificateInput setEdit={setAddCerti} />
+          }
         </div>
       </div>
     </div>
   );
 };
-
 export default Profiles;

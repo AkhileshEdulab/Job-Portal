@@ -1,9 +1,8 @@
 # Getting Started with Create React App
 
 # First// cd job-portal
-# second// npm install @mantine/dates@7.14.2
-#third // npm install --legacy-peer-deps
-# fourth // npm install --force
+# second// npm install @mantine/dates@7.14.2 --legacy-peer-deps
+
 # last // npm start
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

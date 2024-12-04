@@ -19,7 +19,7 @@ const ApplyJobCard = () => {
         setInterval(()=>{
             x--;
             setSec(x);
-            if(x==0)Navigate('/find-job')
+            if(x===0)Navigate('/find-job')
         },1000)
     }
   return (<>

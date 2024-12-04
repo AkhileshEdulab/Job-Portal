@@ -3,6 +3,7 @@ import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/tiptap/styles.css';
 import '@mantine/dates/styles.css';
+import '@mantine/notifications/styles.css';
 import Home from './Pages/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Header from './Header/Header';
@@ -18,6 +19,7 @@ import CompanyPage from './Pages/CompanyPage';
 import JobHistoryPage from './Pages/JobHistoryPage';
 import SignUpPage from './Pages/SignUpPage';
 import ProfilePage from './Pages/ProfilePage';
+import { Notifications} from '@mantine/notifications';
 
 const theme = createTheme({
   focusRing:"never",
@@ -36,6 +38,7 @@ const theme = createTheme({
 function App() {
   return (
     <MantineProvider defaultColorScheme='dark'  theme={theme}>
+     <Notifications position="top-center" zIndex={1000}/>
       <BrowserRouter>
       <div className='relative'>
       <Header/>

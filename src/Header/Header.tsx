@@ -1,11 +1,12 @@
-import {  Indicator } from '@mantine/core';
+import {  Button, Indicator } from '@mantine/core';
 import { IconAnchor, IconBell, IconSettings, } from '@tabler/icons-react';
 import NavLinks from './NavLinks';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ProfileMenu from './ProfileMenu';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
-  
+  const user = useSelector ((state:any)=>state.user);
  const location=useLocation();
   return location.pathname!=="/sign-up"&& location.pathname!=="/login"?<div className="w-full h-20 flex items-center justify-between p-5 bg-mine-shaft-950 text-white font-[Poppins]">
       <div className="flex gap-2 items-center">
@@ -14,7 +15,9 @@ const Header = () => {
       </div>
       {NavLinks()}
       <div className="flex items-center gap-3">
-      <ProfileMenu/>
+     {user?<ProfileMenu/>:<Link to={'/login'}>
+     <Button variant='subtle' color='bright-sun.4'>Login</Button>
+     </Link>}
         <div className='rounded-full p-1.5 bg-mine-shaft-800 text-mine-shaft-300 hover:text-mine-shaft-100'>
         <IconSettings size={25} className="cursor-pointer" />
         </div>

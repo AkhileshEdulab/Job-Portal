@@ -1,4 +1,4 @@
-import { Button, PasswordInput, rem, TextInput } from "@mantine/core";
+import { Button,  LoadingOverlay,  PasswordInput, rem, TextInput } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { IconAt, IconLock, IconCheck, IconX } from "@tabler/icons-react";
 import { useState } from "react";
@@ -6,13 +6,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../Services/UserServices";
 import { useDisclosure } from "@mantine/hooks";
 import ResetPassword from "./ResetPassword";
+import { useDispatch } from "react-redux";
+import { setUser } from "../Slices/UserSlice";
 
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [touched, setTouched] = useState<{ email?: boolean; password?: boolean }>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [loading,setLoding]= useState(false);
+  
   const navigate = useNavigate();
+  const dispatch= useDispatch()
   const [opened, { open, close }] = useDisclosure(false);
 
   const validateForm = () => {
@@ -53,36 +57,42 @@ const Login = () => {
       showNotification({
         title: "Validation Error",
         message: "Please correct the errors in the form",
-        color: "red",
+        color: "red.8",
         icon: <IconX />,
       });
       return;
     }
-
-    setIsSubmitting(true);
+    setLoding(true);
     try {
-       loginUser(data); 
+      const res = await loginUser(data);
        showNotification({
         title: "Login Successful",
         message: "Welcome back!",
-        color: "green",
+        color: "green.8",
         icon: <IconCheck />,
       });
+      dispatch(setUser(res)); 
       navigate("/");
     } catch (error: any) {
       showNotification({
         title: "Login Failed",
         message: error.response?.data?.message || "An error occurred. Please try again.",
-        color: "red",
+        color: "red.8",
         icon: <IconX />,
       });
     } finally {
-      setIsSubmitting(false);
+      setLoding(false);
     }
   };
 
   return (
    <>
+    <LoadingOverlay
+          visible={loading}
+          zIndex={1000}
+          overlayProps={{ radius: 'sm', blur: 2 }}
+          loaderProps={{ color: 'green.8', type: 'bars' }}
+        />
     <div className="w-1/2 px-20 flex flex-col justify-center gap-3">
       <div className="text-2xl font-semibold">Login to Your Account</div>
       <TextInput
@@ -113,9 +123,9 @@ const Login = () => {
         autoContrast
         variant="filled"
         onClick={handleSubmit}
-        disabled={isSubmitting}
+        loading={loading}
       >
-        {isSubmitting ? "Signing in..." : "Sign-in"}
+        Login
       </Button>
       <div className="mx-auto">
         Don't have an account?{" "}

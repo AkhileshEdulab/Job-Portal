@@ -1,5 +1,5 @@
 
-import {Anchor,Button,Checkbox,Group,PasswordInput,Radio,rem,TextInput,} from "@mantine/core";
+import {Anchor,Button,Checkbox,Group,LoadingOverlay,PasswordInput,Radio,rem,TextInput,} from "@mantine/core";
 import { showNotification } from "@mantine/notifications"; 
 import { IconAt, IconLock, IconCheck, IconX } from "@tabler/icons-react";
 import { useState } from "react";
@@ -20,6 +20,7 @@ const SignUp = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const navigate = useNavigate()
+  const [loading,setLoding]=useState(false);
 
   const handleChange = (event: any) => {
     if (typeof event === "string") {
@@ -92,6 +93,7 @@ const SignUp = () => {
       });
       return;
     }
+    setLoding(true);
 
     registerUser(data)
       .then((res) => {
@@ -113,11 +115,20 @@ const SignUp = () => {
           color: "red.8",
           icon: <IconX />,
         });
+        setLoding(false);
         console.error("Registration failed:", err);
       });
   };
-
+  
   return (
+    <>  
+    <LoadingOverlay
+    visible={loading}
+    className="translate-x-1/2"
+    zIndex={1000}
+    overlayProps={{ radius: 'sm', blur: 2 }}
+    loaderProps={{ color: 'green.8', type: 'bars' }}
+  />
     <div className="w-1/2 px-20 flex flex-col justify-center gap-3">
       <div className="text-2xl font-semibold">Create Account</div>
       <TextInput
@@ -204,7 +215,7 @@ const SignUp = () => {
         }
         error={touched.acceptTerms && errors.acceptTerms}
       />
-      <Button autoContrast variant="filled" onClick={handleSubmit}>
+      <Button autoContrast variant="filled" loading={loading} onClick={handleSubmit}>
         Sign-up
       </Button>
       <div className="mx-auto">
@@ -214,6 +225,7 @@ const SignUp = () => {
         </Link>
       </div>
     </div>
+    </>
   );
 };
 

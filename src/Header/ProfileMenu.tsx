@@ -2,18 +2,25 @@ import { Menu, rem, Avatar, Switch } from '@mantine/core';
 import {IconMessageCircle,IconLogout,IconUserCircle,IconSun,IconMoon, IconFileText,
 } from '@tabler/icons-react';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { removeUser } from '../Slices/UserSlice';
 
-const ProfileMenu =() =>{   
+const ProfileMenu =() =>{ 
+    const  dispatch = useDispatch() 
+    const user = useSelector((state:any) => state.user);
     const [checked, setChecked] = useState(false);
     const [opened, setOpened] = useState(false);
+    const handelRemove=()=>{
+      dispatch(removeUser())
+    }
 
   return (
     <Menu opened={opened} onChange={setOpened} shadow="md" width={200}>
       <Menu.Target>
       <div className="flex items-center gap-3">
-        <span className='text-bright-sun-400 font-semibold text-xl'>Akhilesh</span>
-        <Avatar src="avatar.png" alt="it's me" />
+      <span className='text-bright-sun-400 font-semibold text-xl'>{user.name}</span>
+      <Avatar src="avatar.png" alt="it's me" />
         </div>
       </Menu.Target>
 
@@ -42,6 +49,7 @@ const ProfileMenu =() =>{
         <Menu.Divider />
         <Menu.Label>Danger zone</Menu.Label>
         <Menu.Item
+          onClick={handelRemove}
           color="red"
           leftSection={<IconLogout style={{ width: rem(14), height: rem(14) }} />}
         >

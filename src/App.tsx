@@ -1,25 +1,29 @@
-import { Divider, MantineProvider, createTheme } from '@mantine/core';
+import { MantineProvider, createTheme } from '@mantine/core';
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/tiptap/styles.css';
 import '@mantine/dates/styles.css';
 import '@mantine/notifications/styles.css';
-import Home from './Pages/Home';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Header from './Header/Header';
-import Footer from './Footer/Footer';
-import FindJobs from './Pages/FindJobs';
-import About from './Pages/PostedJobPage';
-import UploadJobs from './Pages/PostJobPage';
-import FindTalent from './Pages/FindTalent';
-import TalentProfile from './Pages/TalentProfile';
-import JobDescriptionPage from './Pages/JobDescriptionPage';
-import ApplyJobPages from './Pages/ApplyJobPages';
-import CompanyPage from './Pages/CompanyPage';
-import JobHistoryPage from './Pages/JobHistoryPage';
-import SignUpPage from './Pages/SignUpPage';
-import ProfilePage from './Pages/ProfilePage';
+//import { BrowserRouter, Route, Routes } from 'react-router-dom';
+// import Home from './Pages/Home';
+// import Header from './Header/Header';
+// import Footer from './Footer/Footer';
+// import FindJobs from './Pages/FindJobs';
+// import About from './Pages/PostedJobPage';
+// import UploadJobs from './Pages/PostJobPage';
+// import FindTalent from './Pages/FindTalent';
+// import TalentProfile from './Pages/TalentProfile';
+// import JobDescriptionPage from './Pages/JobDescriptionPage';
+// import ApplyJobPages from './Pages/ApplyJobPages';
+// import CompanyPage from './Pages/CompanyPage';
+// import JobHistoryPage from './Pages/JobHistoryPage';
+// import SignUpPage from './Pages/SignUpPage';
+// import ProfilePage from './Pages/ProfilePage';
+import Store from './Store/Store';
+import { Provider } from 'react-redux';
 import { Notifications} from '@mantine/notifications';
+import AppRouter from './AppRouter/AppRouter';
+
 
 const theme = createTheme({
   focusRing:"never",
@@ -37,9 +41,10 @@ const theme = createTheme({
 
 function App() {
   return (
+    <Provider store={Store}>
     <MantineProvider defaultColorScheme='dark'  theme={theme}>
      <Notifications position="top-center" zIndex={1000}/>
-      <BrowserRouter>
+      {/* <BrowserRouter>
       <div className='relative'>
       <Header/>
       <Divider size="xs" />
@@ -61,8 +66,11 @@ function App() {
       </Routes>
       <Footer/>
       </div>
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <AppRouter/>
+     
     </MantineProvider>
+    </Provider>
   );
 }
 
